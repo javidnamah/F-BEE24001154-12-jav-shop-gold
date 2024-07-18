@@ -51,6 +51,12 @@ app.post("/create/order", orderHandler.createOrder);
 app.patch("/update/status/:id", orderHandler.updateStatus);
 app.delete("/delete/order/:id", orderHandler.deleteById);
 
+// api documentation: use swagger
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('./swagger/swagger.json');
+
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+
 app.listen(PORT, function () {
   console.log(`Server berjalan di http://localhost:${PORT}`);
 });
